@@ -854,12 +854,23 @@ O `UserSeeder` cria **3 equipes**, **10 gestores** e **10 colaboradores** usando
 ```
 Senha padrão: password
 ```
-
 Para pegar um email de gestor pelo terminal:
 
 ```bash
 php artisan tinker
 >>> App\Models\User::where('role', 'gestor')->first()->only(['name', 'email'])
+```
+
+### Usuários de teste padrão
+
+Além disso, também inclui usuários fixos de gestores e colaboradores:
+
+```
+Email:  gestor@rootcode.com
+Senha:  password
+
+Email:  colaborador@rootcode.com  
+Senha:  password
 ```
 
 ### Clientes (criados pelo `ClientSeeder`)
