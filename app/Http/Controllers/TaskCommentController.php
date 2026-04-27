@@ -11,15 +11,10 @@ class TaskCommentController extends Controller
     // Lista todos os comentários de uma tarefa
     public function index(Request $request, Task $task)
     {
-        // Garante que o usuário só pode ver comentários de suas próprias tarefas
-        if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Não autorizado.'], 403);
-        }
-
         $comments = $task->comments()
-                         ->with('user:id,name,role') // Carrega nome e role do autor
-                         ->orderBy('created_at', 'asc')
-                         ->get();
+                        ->with('user:id,name,role')
+                        ->orderBy('created_at', 'asc')
+                        ->get();
 
         return response()->json($comments, 200);
     }
@@ -27,10 +22,6 @@ class TaskCommentController extends Controller
     // Adiciona um comentário a uma tarefa
     public function store(Request $request, Task $task)
     {
-        if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Não autorizado.'], 403);
-        }
-
         $request->validate([
             'content' => 'required|string|max:2000',
         ]);
@@ -41,7 +32,6 @@ class TaskCommentController extends Controller
             'content' => $request->content,
         ]);
 
-        // Retorna o comentário com os dados do autor
         $comment->load('user:id,name,role');
 
         return response()->json($comment, 201);

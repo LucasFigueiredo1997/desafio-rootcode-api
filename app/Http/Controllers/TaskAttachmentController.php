@@ -12,10 +12,6 @@ class TaskAttachmentController extends Controller
     // Lista todos os anexos de uma tarefa
     public function index(Request $request, Task $task)
     {
-        if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Não autorizado.'], 403);
-        }
-
         $attachments = $task->attachments()
                             ->with('user:id,name')
                             ->orderBy('created_at', 'asc')
@@ -27,16 +23,12 @@ class TaskAttachmentController extends Controller
     // Faz upload de um anexo
     public function store(Request $request, Task $task)
     {
-        if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Não autorizado.'], 403);
-        }
-
         $request->validate([
-            'file' => 'required|file|max:10240', // Máximo 10MB
+            'file' => 'required|file|max:10240',
         ]);
 
         $file = $request->file('file');
-        $path = $file->store('attachments', 'public'); // Salva em storage/app/public/attachments
+        $path = $file->store('attachments', 'public');
 
         $attachment = TaskAttachment::create([
             'task_id'   => $task->id,
