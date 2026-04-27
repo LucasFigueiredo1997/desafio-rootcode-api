@@ -101,7 +101,7 @@ Antes de começar, você precisa ter instalado na sua máquina:
 
 | Ferramenta | Versão mínima | Para que serve |
 |------------|--------------|----------------|
-| **PHP** | 8.2+ | Linguagem que executa o Laravel |
+| **PHP** | 8.3+ | Linguagem que executa o Laravel |
 | **Composer** | 2.x | Gerenciador de pacotes do PHP (como o npm é para Node) |
 | **MySQL** | 8.0+ | Banco de dados relacional |
 | **Node.js** | 18+ | Necessário para alguns pacotes do Laravel |
@@ -126,7 +126,7 @@ node --version
 
 ### 📥 Onde baixar (caso não tenha instalado)
 
-- **PHP + MySQL**: [XAMPP](https://www.apachefriends.org/) — instala os dois juntos (recomendado para Windows)
+- **PHP + MySQL**: [XAMPP](https://www.apachefriends.org/) — instala os dois juntos (recomendado para Windows) - baixe a versão com **PHP 8.3+**
 - **Composer**: [getcomposer.org](https://getcomposer.org/download/)
 - **Node.js**: [nodejs.org](https://nodejs.org/en/download/)
 
