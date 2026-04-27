@@ -10,6 +10,25 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        // Cria usuário fixo (gestor) para avaliação
+        User::firstOrCreate(
+            ['email' => 'gestor@rootcode.com'],
+            [
+                'name'     => 'Gestor Admin',
+                'password' => bcrypt('password'),
+                'role'     => 'gestor',
+            ]
+        );
+        // Cria usuário fixo (colaborador) para avaliação
+        User::firstOrCreate(
+            ['email' => 'colaborador@rootcode.com'],
+            [
+                'name'     => 'Colaborador Teste',
+                'password' => bcrypt('password'),
+                'role'     => 'colaborador',
+            ]
+        );
+        
         // Cria 3 equipes
         $teams = Team::factory(3)->create();
 
